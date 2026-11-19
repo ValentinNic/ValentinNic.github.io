@@ -1,5 +1,39 @@
 [
   {
+    "slug": "queuelab",
+    "name": "QueueLab",
+    "category": "Software engineering",
+    "field": "Support operations · Discrete-event simulation",
+    "summary": "Move an agent to a later shift or prioritise urgent support tickets. Replay the same day and compare waiting times, backlog and coverage.",
+    "stack": [
+      "JavaScript",
+      "Discrete-event simulation",
+      "Scenario analysis"
+    ],
+    "result": "21 → 4",
+    "measure": "tickets still waiting at closing in the default afternoon-surge simulation",
+    "demo": "app/index.html",
+    "source": "QueueLab-Source.zip",
+    "sections": [
+      [
+        "The staffing decision",
+        "Five agents work eight-hour shifts. The baseline has four early starters and one late starter. Move people between shifts, change the queue policy, or replay different seeded demand patterns. Both plans receive the same ticket arrivals and service requirements."
+      ],
+      [
+        "What changes in the default run",
+        "Of 106 synthetic arrivals, the baseline starts 85 before closing. Moving a second agent to the late shift raises that number to 102 and reduces the waiting queue from 21 to 4. The observed 90th-percentile wait rises from 63 to 72 minutes. The two policies started different sets of tickets."
+      ],
+      [
+        "Where the time goes",
+        "Both plans schedule 40 staff hours. Agents can finish their current ticket after shift end. The default baseline incurs 20 agent-minutes of overrun and the alternative incurs 41. This matters when interpreting the reduction in backlog."
+      ],
+      [
+        "Verification",
+        "The model checks cover 360 combinations of staffing, queue policy and ticket stream. They check conservation of tickets, no overlapping work, shift boundaries and repeatability. Additional fixtures exercise priority, overtime and empty queues."
+      ]
+    ]
+  },
+  {
     "slug": "logistics-payroll",
     "name": "Logistics Finance & Payroll",
     "category": "Software engineering",
