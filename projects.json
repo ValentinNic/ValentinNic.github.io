@@ -1,0 +1,116 @@
+[
+  {
+    "slug": "warehousedesk",
+    "name": "WarehouseDesk",
+    "field": "Warehouse operations · Java web application",
+    "summary": "Explore a simulated distribution centre, from shift performance and picking accuracy to individual movements and safety incidents.",
+    "stack": [
+      "Java 21",
+      "HTTP API",
+      "Operations reporting"
+    ],
+    "result": "240",
+    "measure": "fictional colleagues across early and late shifts",
+    "demo": "dashboard.html",
+    "source": "WarehouseDesk.zip",
+    "sections": [
+      [
+        "The shift handover",
+        "A manager starts with accuracy, labour performance and unresolved incidents. From there, they can compare inbound and outbound throughput, inspect one colleague’s timeline, or trace an exception to its recorded event."
+      ],
+      [
+        "A Java reporting service",
+        "A Java 21 HTTP server provides a shift index and detailed JSON reports. Each report brings together the event ledger, colleague summaries and incident records. The hosted portfolio demo reads snapshots exported by the same Java application. Download the source to run the live API locally."
+      ],
+      [
+        "Nine operational activities",
+        "Receiving, putaway, replenishment, picking, packing, dispatch, returns, cycle counting and quality inspection each have their own simulated hourly standard. The ledger records each batch’s start, finish, colleague, product, quantity and locations. Separate entries record breaks, briefings and bay waits."
+      ],
+      [
+        "Quality and site incidents",
+        "Pick accuracy uses checked units and first-pass errors. The incident register covers sixteen scenarios including pedestrian near misses, spills, equipment failures, scan delays, stock discrepancies and missed collections. Cases carry a team owner, status, priority and a linked operational event."
+      ],
+      [
+        "How the numbers are checked",
+        "Integration checks reconstruct each colleague’s full eight-hour timeline, verify that breaks and work do not overlap, and reconcile units, first-pass errors and earned minutes to source events. The five-day scenario and all performance standards are fictional. Its case counts illustrate reporting coverage rather than real-world incident rates."
+      ]
+    ],
+    "category": "Software engineering"
+  },
+  {
+    "slug": "storeloop",
+    "name": "StoreLoop",
+    "field": "Store replenishment · Software engineering",
+    "summary": "Compare three ways to plan a delivery run from one distribution centre to a group of retail stores.",
+    "stack": [
+      "JavaScript",
+      "Combinatorial optimisation",
+      "Dynamic programming"
+    ],
+    "result": "7.8%",
+    "measure": "less modelled distance across 100 simulated networks versus nearest neighbour",
+    "demo": "demo.html",
+    "source": "StoreLoop.zip",
+    "sections": [
+      [
+        "The dispatch decision",
+        "The load and store list are fixed. The dispatcher chooses the order of visits for one vehicle that must return to its starting depot. The demo lets you select a network, change its size and inspect each algorithm’s stop sequence."
+      ],
+      [
+        "Three ways to build a route",
+        "Nearest neighbour always chooses the closest unvisited store. A 2-opt search then tries reversing sections of that route to shorten it. A Held–Karp dynamic programme independently finds the shortest possible tour under the model, providing a reference for evaluating both heuristics."
+      ],
+      [
+        "What the benchmark found",
+        "Across 100 seeded nine-store networks, 2-opt reduced total modelled distance by 7.8% against nearest neighbour. It matched the exact optimum in 78 networks. Its total distance across all runs was 0.72% above the exact total."
+      ],
+      [
+        "How to check the result",
+        "The downloadable benchmark verifies that each route visits every store once and starts and ends at the distribution centre. On ten smaller networks it compares the exact solver against exhaustive enumeration. The exact solver stores a result for each subset and final stop, so its resource requirements grow exponentially with the number of stores."
+      ],
+      [
+        "Where the model ends",
+        "These are synthetic locations with straight-line distances. A retail trial would need road travel times, delivery windows, driver hours and vehicle capacity. The reported change is a simulation result and cannot establish real mileage or cost savings."
+      ]
+    ],
+    "category": "Software engineering"
+  },
+  {
+    "slug": "parcelscope",
+    "name": "ParcelScope",
+    "field": "Demand forecasting",
+    "summary": "Explore seven-day parcel forecasts for three simulated depots and see how the predictions compare with actual volumes.",
+    "stack": [
+      "Python",
+      "pandas",
+      "scikit-learn"
+    ],
+    "result": "53.6%",
+    "measure": "lower mean absolute error than the weekly benchmark",
+    "sections": [
+      [
+        "The planning decision",
+        "A depot needs a daily volume estimate before it assigns shifts. Each Monday, ParcelScope forecasts the next seven days using past volumes, calendar effects and promotions already on the schedule."
+      ],
+      [
+        "Model and evaluation",
+        "A separate ridge regression models each depot. The benchmark repeats the previous week’s count for the same weekday. After 132 weeks of initial history, 12 weeks of rolling forecasts calibrate the uncertainty bands. The final 12 weeks are held out for evaluation."
+      ],
+      [
+        "What the results show",
+        "Across 252 held-out depot-days, the model averaged 60.2 parcels of absolute error, compared with 129.8 for the benchmark. At the coastal depot, the 90% target band covered 85.7% of daily observations. That gap matters to a planner budgeting capacity for a busy day."
+      ],
+      [
+        "Engineering choices",
+        "A single Python command regenerates the data, evaluation and offline dashboard. Four automated tests cover reproducibility, forecast-week leakage, benchmark alignment and output shape. A GitHub Actions workflow runs the tests and rebuilds the project."
+      ],
+      [
+        "Limits and next experiment",
+        "The generator and the model both include calendar and promotion effects. Validating this approach on real operations would require historical promotion plans as they were known at each forecast date. A next experiment would compare interval coverage on promotion days and ordinary weekdays."
+      ]
+    ],
+    "demo": "dashboard.html",
+    "source": "ParcelScope.zip",
+    "category": "Data science"
+  }
+]

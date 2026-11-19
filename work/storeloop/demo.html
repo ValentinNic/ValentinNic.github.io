@@ -1,0 +1,17 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>StoreLoop · Replenishment route lab</title>
+<style>*{box-sizing:border-box}body{margin:0;background:#eef3f0;color:#102c2d;font:1rem/1.5 system-ui}main{max-width:64rem;margin:auto;padding:2rem 5%}a{color:#11585c}h1{font-size:clamp(2.4rem,7vw,4.7rem);line-height:1;margin:.55em 0 .2em}section{display:grid;grid-template-columns:1.3fr 1fr;gap:1.3rem;align-items:start}article,aside{background:white;padding:1.2rem;border-radius:.7rem}svg{display:block;width:100%;background:#f3f7f4}label{display:grid;gap:.3rem;margin-bottom:.85rem;font-weight:600}select,button{font:inherit;padding:.45rem;color:inherit;border:1px solid #a8bdba;background:white;border-radius:.3rem}button{cursor:pointer}table{width:100%;border-collapse:collapse}th,td{text-align:left;border-bottom:1px solid #ccd8d6;padding:.4em}#sequence{overflow-wrap:anywhere}@media(max-width:700px){section{grid-template-columns:1fr}}</style>
+<main><a href="index.html">StoreLoop case study</a><h1>StoreLoop</h1><p>Sequence a single delivery run from a distribution centre to a group of stores and back. Compare three routes on the same simulated map.</p>
+<section><article><svg id="map" role="img" aria-label="Schematic route connecting the distribution centre and numbered stores" viewBox="0 0 340 340"></svg><p id="sequence"></p></article><aside><label>Store network<select id="seed"></select></label><label>Stores on the run<select id="count"><option>6</option><option selected>9</option><option>12</option></select></label><label>Route on map<select id="method"><option>Nearest neighbour</option><option selected>2-opt refinement</option><option>Exact optimum</option></select></label><table><caption>Round-trip distance</caption><thead><tr><th>Method</th><th>Model km</th></tr></thead><tbody id="rows"></tbody></table><p>Each map unit represents one kilometre. Distances are straight-line estimates. The square marks the distribution centre.</p></aside></section></main><script src="engine.js"></script><script>
+const el=id=>document.getElementById(id);
+for(let i=1;i<=100;i++)el('seed').add(new Option('Network '+i,i));
+function render(){
+  const points=scenario(+el('seed').value,+el('count').value);
+  const d=distances(points), first=nearest(d), routes=[first,twoOpt(first,d),exact(d)];
+  const route=routes[el('method').selectedIndex];
+  const xy=points.map(([x,y])=>[12+3*x,12+3*y]);
+  el('map').innerHTML='<polyline fill="none" stroke="#147775" stroke-width="2.5" points="'+route.map(i=>xy[i].join(',')).join(' ')+'"/>'+xy.map(([x,y],i)=>'<g transform="translate('+x+' '+y+')">'+(i?'<circle r="6" fill="#193f40"/>':'<rect x="-6" y="-6" width="12" height="12" fill="#a65116"/>')+'<text y="-9" text-anchor="middle" font-size="11" stroke="#f3f7f4" stroke-width="3" paint-order="stroke">'+(i||'DC')+'</text></g>').join('');
+  el('sequence').textContent=route.map(i=>i?'Store '+i:'DC').join(' → ');
+  el('rows').innerHTML=routes.map((r,i)=>'<tr><td>'+el('method').options[i].text+'</td><td>'+lengthOf(r,d).toFixed(1)+'</td></tr>').join('');
+}
+document.querySelectorAll('select').forEach(s=>s.addEventListener('change',render));render();
+</script></html>
