@@ -1,5 +1,35 @@
 [
   {
+    "slug": "steady",
+    "name": "Steady",
+    "category": "Software engineering",
+    "field": "Personal finance · React application",
+    "summary": "Track discretionary spending, see its cost in working hours and give impulse purchases a cooldown before deciding.",
+    "stack": [
+      "React",
+      "Tailwind CSS",
+      "Recharts"
+    ],
+    "result": "3",
+    "measure": "cooldown choices, from 24 hours to a full week",
+    "demo": "app/index.html",
+    "source": "Steady-Source.zip",
+    "sections": [
+      [
+        "The everyday decision",
+        "A wanted item enters a timed vault. After the cooldown, skipping it adds its value to the saved total. Buying it records the purchase with an emotional trigger."
+      ],
+      [
+        "The weekly view",
+        "A local Monday-to-Sunday budget gives spending context. Trigger-based insights and life-hour equivalents connect individual decisions to patterns over time."
+      ],
+      [
+        "Privacy and demo behaviour",
+        "All financial records stay in the browser. The accountability partner is simulated and shows only high-level signals. Settings can restore the sample dataset."
+      ]
+    ]
+  },
+  {
     "slug": "warehousedesk",
     "name": "WarehouseDesk",
     "field": "Warehouse operations · Java web application",
