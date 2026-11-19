@@ -1,5 +1,39 @@
 [
   {
+    "slug": "logistics-payroll",
+    "name": "Logistics Finance & Payroll",
+    "category": "Software engineering",
+    "field": "Workforce operations · React application",
+    "summary": "Explore how overtime and night shift rates affect a logistics team’s monthly gross payroll. Inspect employee-level calculations and export a filtered roster.",
+    "stack": [
+      "React 18",
+      "Tailwind CSS v4",
+      "Vite"
+    ],
+    "result": "£16,459.75",
+    "measure": "monthly gross payroll for the five-person demo roster at default rates",
+    "demo": "app/index.html",
+    "source": "Logistics-Payroll-Source.zip",
+    "sections": [
+      [
+        "The payroll question",
+        "A shift premium change affects colleagues differently depending on their salaries and hours. This demo recalculates the whole roster as you adjust rates, while department filters isolate the rows you want to export."
+      ],
+      [
+        "A traceable calculation",
+        "Each payslip shows its hourly rate, overtime and night premium. The calculator keeps the base rate at full precision and rounds each pay component once before adding gross wage."
+      ],
+      [
+        "Trying a scenario",
+        "Choose Fleet and open Elliot Hayes. With a £3,200 salary, 160 standard hours, 12 overtime hours and 24 night hours, the default rules produce £3,656 gross. Change the night premium to £3 per hour and the gross becomes £3,632."
+      ],
+      [
+        "Demo scope",
+        "All starting employees are fictional. Edits are stored in the current browser. Figures are gross monthly wages before deductions. The currency controls change the unit displayed and do not apply exchange rates."
+      ]
+    ]
+  },
+  {
     "slug": "steady",
     "name": "Steady",
     "category": "Software engineering",
